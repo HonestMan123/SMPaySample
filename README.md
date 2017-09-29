@@ -5,7 +5,7 @@
 1.添加聚合支付（smpay）库到你的项目中：
 ```android
 dependencies {
-    compile 'com.smpay:smpay:1.0.3'
+    compile 'com.smpay:smpay:1.0.4'
 }
 ```
 2.在AndroidManifest.xml文件中:
@@ -26,11 +26,11 @@ dependencies {
 ```
 4.在application中初始化sdk（这里的获取请求订单信息链接（REQUEST_PARAMS_URL）需要自己配置）
   ```
-  SMPaySDK.init(this, APPContants.REQUEST_PARAMS_URL);
+  SMPaySDK.init(APPContants.REQUEST_PARAMS_URL);
   ```
 5.调起支付界面：
 ```
-new OrderInfoUtils.OrderTask(context,REQUEST_PAY_CODE).execute(orderId);
+SMPaySDK.startPay(context,REQUEST_PAY_CODE,orderListId);
 ```
 context：
 orderId：需要支付的订单id
