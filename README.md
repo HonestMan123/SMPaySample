@@ -5,7 +5,7 @@
 1.添加聚合支付（smpay）库到你的项目中：
 ```android
 dependencies {
-    compile 'com.smpay:smpay:1.0.1'
+    compile 'com.smpay:smpay:1.0.3'
 }
 ```
 2.在AndroidManifest.xml文件中:
