@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.jy.smpay.SMPaySDK;
-import com.jy.smpay.utils.OrderInfoUtils;
 
 import java.net.URLDecoder;
 
@@ -27,15 +26,15 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.main_pay_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //这里的“326”代表订单id
-                new OrderInfoUtils.OrderTask(MainActivity.this,REQUEST_PAY_CODE).execute("326");
+                //打开支付页面，这里的“326”代表订单id
+                SMPaySDK.startPay(MainActivity.this,REQUEST_PAY_CODE,"326");
             }
         });
     }
 
     private void initPay() {
-
-        SMPaySDK.init(this, APPContants.REQUEST_PARAMS_URL);
+        //初始化聚合支付
+        SMPaySDK.init(APPContants.REQUEST_PARAMS_URL);
     }
 
     @Override
