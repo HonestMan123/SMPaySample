@@ -27,12 +27,14 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.main_pay_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //这里的“326”代表订单id
                 new OrderInfoUtils.OrderTask(MainActivity.this,REQUEST_PAY_CODE).execute("326");
             }
         });
     }
 
     private void initPay() {
+
         SMPaySDK.init(this, APPContants.REQUEST_PARAMS_URL);
     }
 
@@ -52,6 +54,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 解析支付结果
+     * @param payResult
+     */
     private void showPayResult(String payResult) {
         try {
             StringBuilder stringBuilder = new StringBuilder();
@@ -96,6 +102,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 展示支付结果
+     * @param result
+     */
     private void showPayResultDialog(String result) {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
         mBuilder.setTitle("支付结果");
