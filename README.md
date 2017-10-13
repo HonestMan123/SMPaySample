@@ -35,7 +35,7 @@ SMPaySDK.startPay(context,REQUEST_PAY_CODE,orderListId,chanelType);
 context：  
 orderId：需要支付的订单id  
 REQUEST_PAY_CODE：调起支付的请求码  
-chanelType:支付通道，暂时只有两种微信扫码支付（"w-yun_wxscan"）和快捷支付（"mo_kj"）
+chanelType：支付通道，暂时只有两种微信扫码支付（"w-yun_wxscan"）和快捷支付（"mo_kj"）
 
 6.最后还需要在onActivityResult方法里面写入下面代码
 ```
