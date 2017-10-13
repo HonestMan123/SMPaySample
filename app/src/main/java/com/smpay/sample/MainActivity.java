@@ -6,13 +6,21 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
+import com.jy.smpay.ChanelType;
 import com.jy.smpay.SMPaySDK;
 
 import java.net.URLDecoder;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static final int REQUEST_PAY_CODE = 1;
+
+    private TextView nameTv;
+    private TextView notetv;
+    private int select = 0;
+    private String[] names = new String[]{"快捷支付", "支付宝支付", "微信支付"};
+    private String[] notes = new String[]{"", "推荐安装支付宝客户端的用户", "推荐安装微信客户端的用户"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,20 +30,70 @@ public class MainActivity extends AppCompatActivity {
         initViews();
     }
 
-    private void initViews() {
-        findViewById(R.id.main_pay_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //打开支付页面，这里的“326”代表订单id
-                SMPaySDK.startPay(MainActivity.this,REQUEST_PAY_CODE,"326");
-            }
-        });
-    }
-
     private void initPay() {
         //初始化聚合支付
         SMPaySDK.init(APPContants.REQUEST_PARAMS_URL);
     }
+
+    private void initViews() {
+        nameTv = (TextView) findViewById(R.id.main_name_tv);
+        notetv = (TextView) findViewById(R.id.main_note_tv);
+        findViewById(R.id.main_pay_btn).setOnClickListener(this);
+        findViewById(R.id.main_pay_way_layout).setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.main_pay_btn:
+                openPay();
+                break;
+            case R.id.main_pay_way_layout:
+                showSelectPayWayDialog();
+                break;
+        }
+    }
+
+    //选择支付方式
+    private void showSelectPayWayDialog() {
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+        mBuilder.setTitle("选择支付方式");
+        mBuilder.setSingleChoiceItems(names, select, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                select = i;
+                changePayWay(i);
+                dialogInterface.dismiss();
+            }
+        });
+        mBuilder.create().show();
+    }
+
+    //改变支付方式
+    private void changePayWay(int i) {
+        nameTv.setText(names[i]);
+        notetv.setText(notes[i]);
+    }
+
+    private void openPay() {
+        String chanel = "";
+        switch (select){
+            case 0:
+                chanel = ChanelType.QUICK_CHANEL;
+                break;
+//            case 1:
+//                chanel = ChanelType.QUICK_CHANEL;
+//                break;
+            case 2:
+                chanel = ChanelType.WX_CHANEL;
+                break;
+            default:
+                chanel = ChanelType.QUICK_CHANEL;
+                break;
+        }
+        SMPaySDK.startPay(MainActivity.this,REQUEST_PAY_CODE,"326",chanel);
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

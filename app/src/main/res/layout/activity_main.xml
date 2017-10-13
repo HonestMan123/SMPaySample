@@ -4,12 +4,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
     tools:context="com.smpay.sample.MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/main_pay_way_layout"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#cccccc"/>
+        <TextView
+            android:layout_marginTop="8dp"
+            android:id="@+id/main_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="选择支付方式"/>
+
+        <ImageView
+            android:layout_marginTop="8dp"
+            android:id="@+id/main_logo_iv"
+            android:layout_below="@+id/main_text"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@mipmap/ic_launcher"/>
+        <TextView
+            android:id="@+id/main_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="快捷支付"
+            android:layout_alignTop="@+id/main_logo_iv"
+            android:layout_toRightOf="@+id/main_logo_iv"
+            android:layout_marginLeft="8dp"
+            android:textSize="18sp"/>
+        <TextView
+            android:id="@+id/main_note_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_alignBottom="@+id/main_logo_iv"
+            android:layout_marginBottom="8dp"
+            android:layout_alignLeft="@+id/main_name_tv"
+            android:text=""/>
+    </RelativeLayout>
+
+    <View
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#cccccc"/>
 
 
     <Button
+        android:layout_marginTop="24dp"
         android:id="@+id/main_pay_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="支付"
         android:textSize="16sp"/>
