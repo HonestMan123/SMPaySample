@@ -1,7 +1,9 @@
 package com.smpay.sample;
 
 /**
- * Created by Android(JiaWei) on 2017/9/29.
+ *
+ * @author Android(JiaWei)
+ * @date 2017/9/29
  */
 
 public class APPContants {

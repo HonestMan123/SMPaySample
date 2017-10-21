@@ -13,6 +13,9 @@ import com.jy.smpay.SMPaySDK;
 
 import java.net.URLDecoder;
 
+/**
+ * @author Android
+ */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static final int REQUEST_PAY_CODE = 1;
 
@@ -51,10 +54,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.main_pay_way_layout:
                 showSelectPayWayDialog();
                 break;
+            default:
+                break;
         }
     }
 
-    //选择支付方式
+    /**
+     * 选择支付方式
+     */
     private void showSelectPayWayDialog() {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
         mBuilder.setTitle("选择支付方式");
@@ -69,7 +76,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBuilder.create().show();
     }
 
-    //改变支付方式
+    /**
+     * 改变支付方式
+     * @param i
+     */
     private void changePayWay(int i) {
         nameTv.setText(names[i]);
         notetv.setText(notes[i]);
@@ -102,7 +112,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
         switch (requestCode){
-            case REQUEST_PAY_CODE://支付结果回调
+            //支付结果回调
+            case REQUEST_PAY_CODE:
                 String payResult = data.getExtras().getString("pay_result");
                 showPayResult(payResult);
                 break;
@@ -149,6 +160,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     case 3:
                         stringBuilder.append("\n商品名称：");
                         stringBuilder.append(URLDecoder.decode(strs[i].substring(strs[i].indexOf("=")+1),"UTF-8"));
+                        break;
+                    default:
                         break;
                 }
             }
