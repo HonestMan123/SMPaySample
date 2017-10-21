@@ -1,11 +1,11 @@
 # Android接入聚合支付（SMPay）SDK文档
 ## 版本要求 
-1.minSdkVersion 19+
+1.minSdkVersion 14+
 ## 接入流程
 1.添加聚合支付（smpay）库到你的项目中：
 ```android
 dependencies {
-    compile 'com.smpay:smpay:1.0.4'
+    compile 'com.smpay:smpay:1.0.7'
 }
 ```
 2.在AndroidManifest.xml文件中:
@@ -30,11 +30,12 @@ dependencies {
   ```
 5.调起支付界面：
 ```
-SMPaySDK.startPay(context,REQUEST_PAY_CODE,orderListId);
+SMPaySDK.startPay(context,REQUEST_PAY_CODE,orderListId,chanelType);
 ```
-context：
-orderId：需要支付的订单id
-REQUEST_PAY_CODE：调起支付的请求码
+context：  
+orderId：需要支付的订单id  
+REQUEST_PAY_CODE：调起支付的请求码  
+chanelType：支付通道，暂时只有两种微信扫码支付（"w-yun_wxscan"）和快捷支付（"mo_kj"）
 
 6.最后还需要在onActivityResult方法里面写入下面代码
 ```
