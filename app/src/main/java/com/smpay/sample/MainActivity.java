@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 chanel = ChanelType.QUICK_CHANEL;
                 break;
         }
+        //调起支付
         SMPaySDK.startPay(MainActivity.this,REQUEST_PAY_CODE,"326",chanel);
     }
 
